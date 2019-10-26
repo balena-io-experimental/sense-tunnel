@@ -106,7 +106,7 @@ def reset(x, y):
             [g,g,g,b,b,b,g,g]]
     return x,y
 
-def add_turn(pos, maze): 
+def add_turn(pos, maze):
     #three possible ways for tunnel to go: left, right, straight
     direction = randint(1, 3)
     #randomly place red dots
@@ -131,12 +131,13 @@ def add_turn(pos, maze):
 while True:
     pitch = sense.get_orientation()['pitch']
     roll = sense.get_orientation()['roll']
-    x,y = move_marble(pitch, roll, x, y)
     #limit determines speed - starts at 10 and moves down every 100 cycles
     if time % limit == 0:
         pos,maze = add_turn(pos, maze)
     if time % 100 == 0:
         limit = max (1, limit - 1)
+    if time % 5 == 0:
+        x,y = move_marble(pitch, roll, x, y)
     x,y = check_lose(x, y)
     maze[y][x] = w
     sense.set_pixels(sum(maze,[]))
