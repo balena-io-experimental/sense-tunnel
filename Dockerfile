@@ -8,4 +8,4 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-CMD python src/main.py
+CMD python3 src/main.py
